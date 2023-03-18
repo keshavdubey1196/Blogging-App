@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<header class="page-header page-header-mini">
+    {% for cat in cat_objs|slice:":1"%}
+    <h1 class="title">{{cat.category}}</h1>
+    {% endfor %}
+    <ol class="breadcrumb pb-0">
+    </ol>
+</header>
+
+<div style="padding-top:122px;" class="container">
+        <div class="page-container">
+            <div class="page-content">
+                <div class="row">   
+                    {% for cat_obj in cat_objs %}
+                    <div class="col-lg-6">
+                        <div class="card text-center mb-5">
+                            <div class="card-header p-0">                                   
+                                <div class="blog-media">
+                                   <a href="{% url 'single-blog' cat_obj.slug %}"><img src="{{cat_obj.image.url}}" alt="" class="w-100 blog-image-size"></a>         
+                                </div>  
+                            </div>
+                    
+                            <div class="card-body px-0">
+                                <h5 class="card-title mb-2">{{cat_obj.title}}</h5>    
+                                <small class="small text-muted">{{cat_obj.created_at|date:"F d Y"}}
+                                    <span class="px-2">-</span>
+                                    <a href="#" class="text-muted">{{cat_obj.count}} views</a>
+                                </small>
+                                <p class="my-2">{{cat_obj.short_about|truncatewords:60}}</p>
+                            </div>                 
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %} 
