@@ -11,25 +11,13 @@
 <div class="container">
         <section>
             <div class="feature-posts">
-                <a href="#" class="feature-post-item">                       
-                    <span>Our Reviews</span>
+                <span class="feature-post-item">Featured Blogs</span>
+                {% for blog in blogs|slice:":4" %}
+                <a href="{% url 'single-blog' blog.slug %}" class="feature-post-item">
+                    <img src="{{blog.image.url}}" class="w-100 featured-blog-image-size" alt="">
+                    <div class="feature-post-caption">{{blog.title|truncatewords:2}}</div>
                 </a>
-                <a href="#" class="feature-post-item">
-                    <img src="{% static 'assets/imgs/img-1.jpg' %}" class="w-100" alt="">
-                    <div class="feature-post-caption">Incidunt Quaerat</div>
-                </a>
-                <a href="#" class="feature-post-item">
-                    <img src="{% static 'assets/imgs/img-2.jpg' %}" class="w-100" alt="">
-                    <div class="feature-post-caption">Culpa Ducimus</div>
-                </a>
-                <a href="#" class="feature-post-item">
-                    <img src="{% static 'assets/imgs/img-3.jpg' %}" class="w-100" alt="">
-                    <div class="feature-post-caption">Temporibus Simile</div>
-                </a>
-                <a href="#" class="feature-post-item">
-                    <img src="{% static 'assets/imgs/img-4.jpg' %}" class="w-100 " alt="">
-                    <div class="feature-post-caption">Adipisicing</div>
-                </a>
+                {% endfor %}
             </div>
         </section>
         <hr>
@@ -49,7 +37,7 @@
                         <div class="blog-media">
                             <a href="{% url 'single-blog' blog.slug %}"><img src="{{blog.image.url}}" alt="" class="w-100"></a>   
                         </div>  
-                        <p class="my-3">{{blog.short_about|truncatewords:60}}</p>
+                        <p class="my-3">{{blog.short_about|truncatewords:38}}</p>
                     </div>
                     
                     <div class="card-footer d-flex justify-content-between align-items-center flex-basis-0">
@@ -67,7 +55,7 @@
 
                     {% for blog in blogs %}
                     <div class="col-lg-6">
-                        <div class="card text-center mb-5">
+                      <div class="card text-center mb-5">
                             <div class="card-header p-0">                                   
                                 <div class="blog-media">
                                    <a href="{% url 'single-blog' blog.slug %}"><img src="{{blog.image.url}}" alt="" class="w-100 blog-image-size"></a>         
@@ -80,7 +68,7 @@
                                     <span class="px-2">-</span>
                                     <a href="#" class="text-muted">{{blog.count}} views</a>
                                 </small>
-                                <p class="my-2">{{blog.short_about|truncatewords:60}}</p>
+                                <p class="my-2">{{blog.short_about|truncatewords:30}}</p>
                             </div>                 
                         </div>
                     </div>

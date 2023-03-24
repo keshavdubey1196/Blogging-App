@@ -4,7 +4,7 @@
 
 <header class="page-header page-header-mini">
     {% for cat in cat_objs|slice:":1"%}
-    <h1 class="title">{{cat.category}}</h1>
+     <h1 class="title">{{cat.category}}</h1>
     {% endfor %}
     <ol class="breadcrumb pb-0">
     </ol>
@@ -27,9 +27,9 @@
                                 <h5 class="card-title mb-2">{{cat_obj.title}}</h5>    
                                 <small class="small text-muted">{{cat_obj.created_at|date:"F d Y"}}
                                     <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">{{cat_obj.count}} views</a>
+                                    <a href="{% url 'single-blog' cat_obj.slug %}" class="text-muted">{{cat_obj.count}} views</a>
                                 </small>
-                                <p class="my-2">{{cat_obj.short_about|truncatewords:60}}</p>
+                                <p class="my-2">{{cat_obj.short_about|truncatewords:38}}</p>
                             </div>                 
                         </div>
                     </div>

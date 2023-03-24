@@ -30,3 +30,10 @@ class BlogFactory(factory.django.DjangoModelFactory):
     author = factory.SubFactory(UserFactory)
     content = "x"
     category = factory.SubFactory(CategoryFactory)
+
+
+class TagFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.Tag
+
+    name = "testTag"

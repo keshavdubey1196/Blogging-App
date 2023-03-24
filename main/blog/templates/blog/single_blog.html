@@ -9,6 +9,7 @@
         <ol class="breadcrumb pb-0">
         </ol>
 </header>
+
     <!-- End Of Page Header -->
 
 <section class="container">
@@ -25,7 +26,7 @@
                             <span class="px-2"></span>
                             <span>{{blog.created|date:'F d Y'}}</span>
                             <span class="px-2"></span>
-                            <a href="#" class="text-muted">{{blog.count}} views</a>
+                            <a href="#" class="text-muted">{{blog.count}} view{{blog.count|pluralize}}</a>
                         </small>
                     </div>
                     <div class="card-body border-top">
@@ -39,59 +40,24 @@
                 <h6 class="mt-5 text-center">Related Posts</h6>
                 <hr>
                 <div class="row">                       
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card mb-5">
-                            <div class="card-header p-0">                                   
-                                <div class="blog-media">
-                                    <img src="{% static 'assets/imgs/blog-2.jpg' %}" alt="" class="w-100">
-                                    <a href="#" class="badge badge-primary">#Placeat</a>        
-                                </div>  
-                            </div>
-                            <div class="card-body px-0">
-                                <h6 class="card-title mb-2"><a href="#" class="text-dark">Voluptates Corporis Placeat</a></h6>  
-                                <small class="small text-muted">January 20 2019 
-                                    <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">34 Comments</a>
-                                </small>
-                            </div>                  
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card mb-5">
-                            <div class="card-header p-0">                                   
-                                <div class="blog-media">
-                                    <img src="{% static 'assets/imgs/blog-3.jpg' %}" alt="" class="w-100">
-                                    <a href="#" class="badge badge-primary">#dolores</a>        
-                                </div>  
-                            </div>
-                            <div class="card-body px-0">
-                                <h6 class="card-title mb-2"><a herf="#" class="text-dark">Dolorum Dolores Itaque</a></h6>   
-                                <small class="small text-muted">January 19 2019 
-                                    <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">64 Comments</a>
-                                </small>
-                            </div>      
-                        </div>
-                    </div>
-
+                    {% for blog in similar_blogs|slice:":3" %}
                     <div class="col-md-6 col-lg-4 d-none d-lg-block">
                         <div class="card mb-5">
                             <div class="card-header p-0">                                   
                                 <div class="blog-media">
-                                    <img src="{% static 'assets/imgs/blog-4.jpg' %}" alt="" class="w-100">
-                                    <a href="#" class="badge badge-primary">#amet</a>       
+                                 <a href="{% url 'single-blog' blog.slug %}"><img src="{% static 'assets/imgs/blog-4.jpg' %}" alt="" class="w-100"> </a>        
                                 </div>  
                             </div>
                             <div class="card-body px-0">
-                                <h6 class="card-title mb-2">Quisquam Dignissimos</h6>   
-                                <small class="small text-muted">January 17 2019 
+                                <h6 class="card-title mb-2">{{blog.title|truncatewords:2}}</h6>   
+                                <small class="small text-muted">{{blog.created_at|date:"F d Y"}}  
                                     <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">93 Comments</a>
+                                    <a href="#" class="text-muted">{{blog.count}} view{{blog.count|pluralize}}</a>
                                 </small>
                             </div>  
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
             <!-- Sidebar -->
@@ -105,3 +71,4 @@
 </section>
 
 {% endblock content %}
+    
